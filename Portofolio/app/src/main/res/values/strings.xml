@@ -1,0 +1,16 @@
+<resources>
+
+    <string name="app_name">Portofolio</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="app_title">JonasK - NanoDegree</string>
+
+
+    <string name="streamer_text">Spotify Streamer</string>
+    <string name="super_duo1">Super Duo:Scores App</string>
+    <string name="super_duo2">Super Duo:  Library App</string>
+
+    <string name="terminator">Build it Bigger</string>
+    <string name="reader">XYZ Reader</string>
+    <string name="capstone">Capstone</string>
+</resources>
