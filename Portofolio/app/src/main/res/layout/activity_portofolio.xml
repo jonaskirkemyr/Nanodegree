@@ -19,24 +19,26 @@
         android:layout_height="wrap_content"
         android:text="@string/streamer_text"
         android:id="@+id/streamer"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/button_padding"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
         android:background="@drawable/button_custom"
         android:textColor="@color/button_text"
-        android:onClick="onButtonClick" />
+        android:onClick="onButtonClick"
+        android:textSize="@dimen/button_textSize"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/super_duo1"
         android:id="@+id/duo1"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/button_padding"
         android:layout_below="@+id/streamer"
         android:layout_centerHorizontal="true"
         android:background="@drawable/button_custom"
         android:textColor="@color/button_text"
-        android:onClick="onButtonClick" />
+        android:onClick="onButtonClick"
+        android:textSize="@dimen/button_textSize" />
 
     <Button
         android:layout_width="match_parent"
@@ -44,11 +46,12 @@
         android:text="@string/super_duo2"
         android:id="@+id/du2"
         android:layout_below="@+id/duo1"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/button_padding"
         android:layout_centerHorizontal="true"
         android:background="@drawable/button_custom"
         android:textColor="@color/button_text"
-        android:onClick="onButtonClick" />
+        android:onClick="onButtonClick"
+        android:textSize="@dimen/button_textSize"/>
 
     <Button
         android:layout_width="match_parent"
@@ -56,11 +59,12 @@
         android:text="@string/terminator"
         android:id="@+id/terminator"
         android:layout_below="@+id/du2"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/button_padding"
         android:layout_centerHorizontal="true"
         android:background="@drawable/button_custom"
         android:textColor="@color/button_text"
-        android:onClick="onButtonClick" />
+        android:onClick="onButtonClick"
+        android:textSize="@dimen/button_textSize"/>
 
     <Button
         android:layout_width="match_parent"
@@ -68,11 +72,12 @@
         android:text="@string/reader"
         android:id="@+id/materialize"
         android:layout_below="@+id/terminator"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/button_padding"
         android:layout_centerHorizontal="true"
         android:background="@drawable/button_custom"
         android:textColor="@color/button_text"
-        android:onClick="onButtonClick" />
+        android:onClick="onButtonClick"
+        android:textSize="@dimen/button_textSize"/>
 
 
     <Button
@@ -81,10 +86,11 @@
         android:text="@string/capstone"
         android:id="@+id/capstone"
         android:layout_below="@+id/materialize"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/button_padding"
         android:layout_centerHorizontal="true"
         android:background="@drawable/button_custom"
         android:textColor="@color/button_text"
-        android:onClick="onButtonClick" />
+        android:onClick="onButtonClick"
+        android:textSize="@dimen/button_textSize"/>
 
 </RelativeLayout>
