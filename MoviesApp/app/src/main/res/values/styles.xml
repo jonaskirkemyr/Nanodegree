@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="NanoBarTheme"
+           parent="@android:style/Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/NanoActionBar</item>
+        <item name="android:actionMenuTextColor">@style/NanoActionBarTitleText</item>
+        <item name="android:actionBarTabTextStyle">@style/NanoActionBarTabText</item>
+        <item name="android:textColor">@color/textColor</item> <!-- need to replicate value defined in styles.xml.. why? -->
+        <item name="android:textColorPrimary">@color/ColorPrimaryText</item>
+    </style>
+
+
+    <!-- action bar style-->
+    <style name="NanoActionBar"
+           parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/ColorPrimaryDark</item>
+    </style>
+
+    <!-- action bar title text-->
+    <style name="NanoActionBarTitleText"
+           parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/ColorPrimaryText</item>
+    </style>
+
+    <!-- action tabs text-->
+    <style name="NanoActionBarTabText"
+           parent="@android:style/Widget.Holo.ActionBar.TabText">
+        <item name="android:textColor">@color/ColorPrimaryText</item>
+    </style>
+
+    <!--actionbar tabs styles-->
+    <style name="NanoBarTabs"
+           parent="@android:style/Widget.Holo.ActionBar.TabView">
+        <!-- tab indicator -->
+        <item name="android:background">@drawable/actionbar_tab_indicator</item>
+    </style>
+
+</resources>

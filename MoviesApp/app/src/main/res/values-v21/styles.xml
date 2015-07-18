@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="NanoBarTheme"
+           parent="android:Theme.Material.Light">
+        <item name="android:colorPrimary">@color/ColorPrimary</item>
+        <item name="android:colorPrimaryDark">@color/ColorPrimaryDark</item>
+        <item name="android:colorAccent">@color/ColorAccent</item>
+        <item name="android:windowBackground">@color/ColorBackground</item>
+        <item name="android:textColorPrimary">@color/ColorPrimaryText</item>
+
+        <item name="android:textColor">@color/textColor</item> <!-- need to replicate value defined in styles.xml.. why? -->
+
+
+    </style>
+</resources>

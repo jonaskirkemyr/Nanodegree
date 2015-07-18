@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" android:weightSum="1"
+        xmlns:android="http://schemas.android.com/apk/res/android" android:paddingLeft="@dimen/leftWindowPadding"
+        android:paddingRight="@dimen/rightWindowPadding" tools:context="nano.jonask.sunshine.DetailActivityFragment"
+        xmlns:tools="http://schemas.android.com/tools" android:paddingTop="@dimen/topWindowPadding">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/title"/>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content" android:paddingTop="@dimen/topWindowPadding"
+        >
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/poster" android:scaleType="centerCrop" android:contentDescription="@string/posterDescription"/>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" android:weightSum="1" android:paddingLeft="@dimen/leftWindowPadding">
+
+
+
+
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/releaseYear"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/duration"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/rating"/>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_favorite"
+                android:id="@+id/favorite" android:background="@drawable/button_custom"/>
+    </LinearLayout>
+</LinearLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/description" android:paddingTop="@dimen/topWindowPadding"/>
+
+        <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:background="@color/ColorAccent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:paddingTop="@dimen/trailerPaddingTop">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/trailers"
+                android:id="@+id/trailers"/>
+        <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/listView"/>
+    </LinearLayout>
+
+</LinearLayout>
