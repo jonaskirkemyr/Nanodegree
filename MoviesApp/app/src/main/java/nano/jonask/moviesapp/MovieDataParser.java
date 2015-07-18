@@ -9,7 +9,7 @@ import org.json.JSONObject;
  */
 public class MovieDataParser
 {
-    private static int PAGE=0;
+    private static int PAGE=0;//can be used to fetch multiple pages
     private static final String DATA="results";
 
     public static Movie[] getMoviesFromJson(String movieJsonStr,String picturePath) throws JSONException {

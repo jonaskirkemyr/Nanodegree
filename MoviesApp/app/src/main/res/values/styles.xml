@@ -29,11 +29,5 @@
         <item name="android:textColor">@color/ColorPrimaryText</item>
     </style>
 
-    <!--actionbar tabs styles-->
-    <style name="NanoBarTabs"
-           parent="@android:style/Widget.Holo.ActionBar.TabView">
-        <!-- tab indicator -->
-        <item name="android:background">@drawable/actionbar_tab_indicator</item>
-    </style>
 
 </resources>

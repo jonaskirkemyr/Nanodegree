@@ -15,14 +15,6 @@
 
     <color name="button_text">#424242</color>
 
-
-    <color name="tab_unselected">#C2185B</color><!--700-->
-    <color name="tab_selected">#F8BBD0</color><!--100-->
-    <color name="tab_unselected_focused">#F06292</color><!--300-->
-    <color name="tab_selected_focused">#F8BBD0</color><!--100-->
-
-    <color name="tab_unselected_pressed">#F06292</color><!--300-->
-    <color name="tab_selected_pressed">#F8BBD0</color>
     <color name="textColor">#424242</color>
     <!--100-->
 
