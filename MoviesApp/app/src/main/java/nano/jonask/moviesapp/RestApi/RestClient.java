@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import nano.jonask.moviesapp.DataSettings;
-import nano.jonask.moviesapp.Movie;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
 import retrofit.converter.GsonConverter;
@@ -16,21 +15,20 @@ public class RestClient {
 
     private static MovieDbApi REST_CLIENT;
 
-    public static MovieDbApi getInstance()
-    {
-       // if(REST_CLIENT==null)
+    public static MovieDbApi getInstance() {
+        if (REST_CLIENT == null)
             setupRestClient();
         return REST_CLIENT;
     }
 
-    protected RestClient(){}
+    protected RestClient() {
+    }
 
 
     private static void setupRestClient() {
 
-        Gson gson=new GsonBuilder()
+        Gson gson = new GsonBuilder()
                 .registerTypeAdapterFactory(new ItemTypeAdapterFactory("results"))
-               // .registerTypeAdapter(Movie.class, new Deserializer<Movie>())
                 .setDateFormat("yyyy-MM-dd")
                 .create();
 

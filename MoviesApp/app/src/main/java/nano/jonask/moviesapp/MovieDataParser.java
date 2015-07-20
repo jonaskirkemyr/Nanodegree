@@ -8,30 +8,28 @@ import org.json.JSONObject;
 /**
  * Created by Jonas Kirkemyr on 16.07.2015.
  */
-public class MovieDataParser
-{
-    private static int PAGE=0;//can be used to fetch multiple pages
-    private static final String DATA="results";
+public class MovieDataParser {
+    private static int PAGE = 0;//can be used to fetch multiple pages
+    private static final String DATA = "results";
 
-    public static Movie[] getMoviesFromJson(String movieJsonStr,String picturePath) throws JSONException {
+    public static Movie[] getMoviesFromJson(String movieJsonStr, String picturePath) throws JSONException {
 
-        final String TITLE="original_title";
-        final String ID="id";
-        final String OVERVIEW="overview";
-        final String RELEASE_DATE="release_date";
-        final String POSTER_PATH="poster_path";
-        final String LANGUAGE="original_language";
-        final String VOTE_AVG="vote_average";
+        final String TITLE = "original_title";
+        final String ID = "id";
+        final String OVERVIEW = "overview";
+        final String RELEASE_DATE = "release_date";
+        final String POSTER_PATH = "poster_path";
+        final String LANGUAGE = "original_language";
+        final String VOTE_AVG = "vote_average";
 
-        JSONObject moviesJson=new JSONObject(movieJsonStr);
-        JSONArray resultArray=moviesJson.getJSONArray(DATA);
+        JSONObject moviesJson = new JSONObject(movieJsonStr);
+        JSONArray resultArray = moviesJson.getJSONArray(DATA);
 
-        Movie[] result=new Movie[resultArray.length()];
-        for(int i=0;i<resultArray.length();++i)
-        {
-            JSONObject temp=resultArray.getJSONObject(i);
+        Movie[] result = new Movie[resultArray.length()];
+        for (int i = 0; i < resultArray.length(); ++i) {
+            JSONObject temp = resultArray.getJSONObject(i);
 
-            result[i]=new Movie();
+            result[i] = new Movie();
             result[i].setTitle(temp.getString(TITLE));
             result[i].setId(Integer.parseInt(temp.getString(ID)));
             result[i].setOverview(temp.getString(OVERVIEW));
@@ -40,9 +38,7 @@ public class MovieDataParser
             try {
                 Uri posterUrl = Uri.parse(picturePath + temp.getString(POSTER_PATH));
                 result[i].setPoster(posterUrl.toString());
-            }
-            catch(NullPointerException e)
-            {
+            } catch (NullPointerException e) {
                 result[i].setPoster(null);
             }
 

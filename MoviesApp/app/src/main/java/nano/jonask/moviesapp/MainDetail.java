@@ -3,9 +3,6 @@ package nano.jonask.moviesapp;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 /**
@@ -24,18 +21,13 @@ public class MainDetail extends FragmentActivity {
         }
     }
 
-
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        Log.d("OPTIONMENU", "" + id);
 
-        if(id==android.R.id.home)
+        if (id == android.R.id.home)//if icon button in title bar clicked..
         {
-            NavUtils.navigateUpFromSameTask(this);
+            NavUtils.navigateUpFromSameTask(this);//.. go back to previous activity
             return true;
         }
 

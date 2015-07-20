@@ -11,8 +11,7 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainfragment);
 
-        if(savedInstanceState==null)
-        {
+        if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new MoviesFragment())
                     .commit();

@@ -1,45 +1,24 @@
 package nano.jonask.moviesapp;
 
-import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.app.FragmentManager;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.*;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
-import com.squareup.okhttp.OkHttpClient;
-import nano.jonask.moviesapp.RestApi.DiscoverResult;
 import nano.jonask.moviesapp.RestApi.MovieDbApi;
 import nano.jonask.moviesapp.RestApi.RestClient;
-import nano.jonask.moviesapp.RestApi.SessionRequestInterceptor;
-import org.json.JSONException;
-import retrofit.RestAdapter;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
-
 import retrofit.Callback;
 import retrofit.RetrofitError;
-import retrofit.client.OkClient;
 import retrofit.client.Response;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Jonas Kirkemyr on 15.07.2015.
@@ -50,6 +29,9 @@ public class MoviesFragment extends Fragment {
     private ProgressDialog progress;
 
     private Context context = null;
+    private Discover currentDiscover = null;
+    private boolean isAsc = false;//not used for now. can be used at a later stage however :)
+
 
     public MoviesFragment() {
         progress = null;
@@ -71,7 +53,7 @@ public class MoviesFragment extends Fragment {
         if (savedInstanceState != null) {
             movieAdapter.setMovieList(savedInstanceState.getParcelableArrayList("movies"));
         } else
-            updateMovies(true);
+            updateMovies(Discover.POPULAR);
     }
 
     @Override
@@ -114,9 +96,9 @@ public class MoviesFragment extends Fragment {
      * Update movie list to show
      * Starts a progressdialog when starting to fetch new movies
      *
-     * @param isPopular
+     * @param discover
      */
-    private void updateMovies(boolean isPopular) {
+    private void updateMovies(Discover discover) {
 
         initWaitInternetProgress();
         if (!checkHasInternet()) {//if no internet connection..
@@ -126,16 +108,14 @@ public class MoviesFragment extends Fragment {
 
         dismissProgresser();
 
-        String type = null;
-        if (isPopular) {//fetch popular movies
+        if (discover == Discover.POPULAR) {//fetch popular movies
             getActivity().setTitle("Most Popular");
-            type = "popular";
-        } else {//fetch high rated movies
+
+        } else if (discover == Discover.VOTE) {//fetch high rated movies
             getActivity().setTitle("Highest Rated");
-            type = "rate";
         }
 
-        new FetchMovies().execute(type);//fetch movies according to chosen type
+        new FetchMovies().execute(discover);//fetch movies according to chosen type
     }
 
     private void initProgresser(String msg) {
@@ -167,11 +147,10 @@ public class MoviesFragment extends Fragment {
         int id = item.getItemId();
 
         if (id == R.id.action_sort) {
-
-            updateMovies(true);
+            updateMovies(Discover.POPULAR);
             return true;
         } else if (id == R.id.action_rate) {
-            updateMovies(false);
+            updateMovies(Discover.VOTE);
             return true;
         }
 
@@ -199,127 +178,49 @@ public class MoviesFragment extends Fragment {
     }
 
 
-    public class FetchMovies extends AsyncTask<String, Void, Void> {
+    public class FetchMovies extends AsyncTask<Discover, Void, Integer> {
         @Override
         protected void onPreExecute() {
             initLoadDataProgress();
         }
 
         @Override
-        protected Void doInBackground(String... params) {
+        protected void onPostExecute(Integer status) {
+            if (status == -1)
+                dismissProgresser();
+        }
 
-            if (params.length == 0)//executing fetching of movies requires input to choose which type of movies to return..
-                return null;//.. return if no input params given
+        @Override
+        protected Integer doInBackground(Discover... params) {
 
+            if (params.length == 0 || currentDiscover == params[0])//executing fetching of movies requires input to choose which type of movies to return..
+                return -1;//.. return if no input params given
 
+            String sortBy = (isAsc) ? ".asc" : ".desc";//whether to sort ascending or descending
+            String sorter = params[0].toString() + sortBy;
 
+            MovieDbApi movieApi = RestClient.getInstance();
+            currentDiscover = params[0];
 
-
-
-            HttpURLConnection httpConnection = null;
-            BufferedReader reader = null;
-
-            String movieJsonStr = null;
-
-
-            final String DISCOVER = "discover";
-            final String MOVIE = "movie";
-
-            final String SORT_PARAM = "sort_by";
-            final String SORT_BY_POPULARITY = "popularity.desc";
-            final String SORT_BY_RATING = "vote_average.desc";
-
-
-            final String API_PARAM = "api_key";
-            final String API_KEY = DataSettings.API_KEY;//insert api key here
-
-            String sorter = (params[0].equals("rate")) ? SORT_BY_RATING : SORT_BY_POPULARITY;
-            //String sorter=SORT_BY_RATING;
-
-            MovieDbApi movieApi= RestClient.getInstance();
-
-            Movie[] result=null;
-
-            movieApi.getMovies(sorter,new Callback<List<Movie>>(){
+            movieApi.getMovies(sorter, new Callback<List<Movie>>() {
                 @Override
                 public void success(List<Movie> movies, Response response) {
-                        Log.d("json", "Success");
-
-                    for(int i=0;i<movies.size();++i)
+                    for (int i = 0; i < movies.size(); ++i)//set poster url to retrieve poster from
                         movies.get(i).setPoster(DataSettings.POSTER_BASE_URL + PosterSize.W500 + movies.get(i).getPoster());
-                    movieAdapter.setMovieList((ArrayList)movies);
+                    movieAdapter.setMovieList((ArrayList) movies);
 
                     dismissProgresser();
                 }
 
                 @Override
                 public void failure(RetrofitError error) {
-                    Log.d("json","Failure");
                     dismissProgresser();
                 }
 
             });
 
 
-
-/*
-            try {
-                Uri urlBuilder = Uri.parse(DataSettings.POSTER_BASE_URL).buildUpon()
-                        .appendPath(DISCOVER)
-                        .appendPath(MOVIE)
-                        .appendQueryParameter(SORT_PARAM, sorter)
-                        .appendQueryParameter(API_PARAM, API_KEY)
-                        .build();
-
-                URL url = new URL(urlBuilder.toString());
-
-                httpConnection = (HttpURLConnection) url.openConnection();
-                httpConnection.setRequestMethod("GET");
-                httpConnection.connect();
-
-                InputStream inputStream = httpConnection.getInputStream();
-                StringBuffer buffer = new StringBuffer();
-
-                if (inputStream == null)//if nothing returned...
-                    return null;//.. nothing to do
-
-                reader = new BufferedReader(new InputStreamReader(inputStream));
-
-                String line = null;
-                while ((line = reader.readLine()) != null)
-                    buffer.append(line + "\n");//for easier debugging, append new line
-
-                if (buffer.length() == 0)//check if anything in stream before parsing
-                    return null;
-
-                movieJsonStr = buffer.toString();
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                return null;
-            } finally {
-                if (httpConnection != null)
-                    httpConnection.disconnect();//close connection before termination
-                if (reader != null) {
-                    try {
-                        reader.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-
-            try {
-                return MovieDataParser.getMoviesFromJson(movieJsonStr, DataSettings.POSTER_BASE_URL + PosterSize.W500);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }*/
-
-          //  return null;
-
-            return null;
+            return 0;
         }
 
     }
@@ -333,6 +234,22 @@ public class MoviesFragment extends Fragment {
             } catch (NullPointerException e) {
             }
             return false;
+        }
+    }
+
+
+    private enum Discover {
+        POPULAR {
+            @Override
+            public String toString() {
+                return "popularity";
+            }
+        },
+        VOTE {
+            @Override
+            public String toString() {
+                return "vote_average";
+            }
         }
     }
 
