@@ -41,6 +41,15 @@ public class MoviePosterAdapter extends BaseAdapter
         }
     }
 
+    public void setMovieList(ArrayList movies)
+    {
+        if(this.movies!=null){
+            this.movies.clear();
+            this.movies=movies;
+            notifyDataSetChanged();
+        }
+    }
+
     public int getCount() {
         return movies.size();
     }
@@ -73,7 +82,16 @@ public class MoviePosterAdapter extends BaseAdapter
             imageView=(ImageView)convertView;
 
         Movie movieTemp=movies.get(position);
-        Picasso.with(context).load(movieTemp.getPoster()).into(imageView);
+        // src: https://github.com/square/picasso/issues/609
+        try {
+           // movieTemp.setPoster(DataSettings.POSTER_BASE_URL + PosterSize.W500+movieTemp.getPoster());
+            Picasso.with(context).load(movieTemp.getPoster()).into(imageView);
+        }
+        catch(IllegalArgumentException e)
+        {
+            movieTemp.setPoster(null);
+            imageView.setImageDrawable(context.getResources().getDrawable(android.R.drawable.ic_delete));
+        }
 
 
         return imageView;
@@ -88,5 +106,10 @@ public class MoviePosterAdapter extends BaseAdapter
     public void addMovie(Movie movie)
     {
         movies.add(movie);
+    }
+
+    public ArrayList<Movie> getMovies()
+    {
+        return (ArrayList<Movie>)movies;
     }
 }

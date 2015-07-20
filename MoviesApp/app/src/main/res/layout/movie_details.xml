@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
 
 <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" android:weightSum="1"
-        xmlns:android="http://schemas.android.com/apk/res/android" android:paddingLeft="@dimen/leftWindowPadding"
+        android:paddingLeft="@dimen/leftWindowPadding"
         android:paddingRight="@dimen/rightWindowPadding" tools:context="nano.jonask.sunshine.DetailActivityFragment"
-        xmlns:tools="http://schemas.android.com/tools" android:paddingTop="@dimen/topWindowPadding">
+        android:paddingTop="@dimen/topWindowPadding">
 
     <TextView
             android:layout_width="wrap_content"
@@ -90,4 +96,6 @@
                 android:id="@+id/listView"/>
     </LinearLayout>
 
+
 </LinearLayout>
+</ScrollView>

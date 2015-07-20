@@ -1,10 +1,12 @@
 package nano.jonask.moviesapp;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.ShareActionProvider;
+import android.util.Log;
 import android.view.*;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,11 +40,13 @@ public class MovieDetail extends Fragment
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
-        Intent intent=getActivity().getIntent();
-        movie=(Movie)intent.getExtras().getSerializable("movie");
 
-        //initDetails();
+            ActionBar bar=null;
+            if((bar=getActivity().getActionBar())!=null)
+                bar.setDisplayHomeAsUpEnabled(true);
+
+        Intent intent=getActivity().getIntent();
+        movie=(Movie)intent.getExtras().getParcelable("movie");
     }
 
 
@@ -56,4 +60,7 @@ public class MovieDetail extends Fragment
 
         return rootView;
     }
+
+
+
 }

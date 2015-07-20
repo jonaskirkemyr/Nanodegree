@@ -1,5 +1,6 @@
 package nano.jonask.moviesapp;
 
+import android.net.Uri;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,7 +36,16 @@ public class MovieDataParser
             result[i].setId(Integer.parseInt(temp.getString(ID)));
             result[i].setOverview(temp.getString(OVERVIEW));
             result[i].setReleaseDate(temp.getString(RELEASE_DATE));
-            result[i].setPoster(picturePath+temp.getString(POSTER_PATH));
+
+            try {
+                Uri posterUrl = Uri.parse(picturePath + temp.getString(POSTER_PATH));
+                result[i].setPoster(posterUrl.toString());
+            }
+            catch(NullPointerException e)
+            {
+                result[i].setPoster(null);
+            }
+
             result[i].setLanguage(temp.getString(LANGUAGE));
             result[i].setVoteAverage(temp.getString(VOTE_AVG));
         }

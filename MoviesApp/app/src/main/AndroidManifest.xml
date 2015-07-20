@@ -24,7 +24,7 @@
                 android:name=".MainDetail"
                 android:label="Details"
                 android:parentActivityName=".MainActivity">
-            <!--support sdk 15-->
+
                 <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
