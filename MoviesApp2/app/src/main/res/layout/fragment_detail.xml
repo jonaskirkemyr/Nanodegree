@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<nano.jonask.moviesapp.VerticalScrollview
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" android:weightSum="1"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            tools:context="nano.jonask.sunshine.DetailActivityFragment"
+            android:paddingTop="@dimen/activity_vertical_margin">
+
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/choose_movie"
+                android:id="@+id/title"
+                android:textColor="@color/textColor"/>
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:orientation="horizontal"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content" android:paddingTop="@dimen/activity_vertical_margin"
+                >
+
+            <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/poster" android:scaleType="centerCrop" android:contentDescription="@string/posterDescription"
+                    android:layout_weight="@integer/image_detail_weight"/>
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:weightSum="1" android:paddingLeft="@dimen/activity_vertical_margin" android:layout_weight="2">
+
+
+
+
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/releaseYear"
+                        android:textColor="@color/textColorLight"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/duration"
+                        android:textColor="@color/textColorLight"
+                        android:layout_marginTop="@dimen/text_vertical_margin"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:id="@+id/rating"
+                        android:textColor="@color/textColor"
+                        android:layout_marginTop="@dimen/text_vertical_margin"/>
+                <Button
+                        android:layout_marginTop="@dimen/text_vertical_margin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/button_favorite"
+                        android:id="@+id/favorite" android:background="@drawable/button_custom"
+                        android:padding="10dp"
+                        android:textColor="@color/textColor"
+                        android:visibility="invisible"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/description" android:paddingTop="@dimen/activity_horizontal_margin"/>
+
+            <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/ColorAccent" />
+
+        </LinearLayout>
+
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:paddingTop="@dimen/activity_vertical_margin">
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="@string/trailers"
+                            android:id="@+id/trailers"/>
+                    <ListView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/listViewTrailers"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:paddingTop="@dimen/activity_vertical_margin"
+                    android:paddingBottom="@dimen/activity_vertical_margin">
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="@string/reviews"
+                            android:id="@+id/reviews"/>
+                    <ListView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/listViewReviews"/>
+            </LinearLayout>
+
+    </LinearLayout>
+</nano.jonask.moviesapp.VerticalScrollview>
+

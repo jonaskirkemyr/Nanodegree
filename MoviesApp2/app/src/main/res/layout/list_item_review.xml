@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:minHeight="?android:attr/listPreferredItemHeight">
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:src="@mipmap/ic_review_icon"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+
+    <LinearLayout android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center_vertical"
+              android:id="@+id/list_item_review_author"
+              android:fontFamily="sans-serif-condensed"
+              android:textAppearance="?android:textAppearanceMedium"
+              android:text="Author"
+              android:layout_marginLeft="@dimen/activity_horizontal_margin"
+              android:textColor="@color/textColor"/>
+
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center_vertical"
+                  android:id="@+id/list_item_review_content"
+                  android:fontFamily="sans-serif-condensed"
+                  android:textAppearance="?android:textAppearanceSmall"
+                  android:text="I loved it it was so much fun and very funny, another marvel masterpieceI loved it it was so much fun and very funny, another marvel masterpieceI loved it it was so much fun and very funny, another marvel masterpieceI loved it it was so much fun and very funny, another marvel masterpieceI loved it it was so much fun and very funny, another marvel masterpiece"
+                  android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                  android:layout_marginTop="@dimen/text_vertical_margin"
+                  android:textColor="@color/textColorLight"/>
+
+    </LinearLayout>
+</LinearLayout>

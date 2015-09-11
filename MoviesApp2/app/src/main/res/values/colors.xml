@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ColorPrimary">#E91E63</color> <!-- toolbars and larger color blocks-->
+    <color name="ColorPrimaryDark">#C2185B</color> <!-- status bar-->
+    <color name="ColorPrimaryText">#fff</color>
+    <color name="ColorBackground">#ffffff</color>
+
+    <color name="ColorAccent">#9FA8DA</color> <!-- primary action buttons : switches/sliders -->
+    <color name="ColorAccentFallback">#64B5F6</color> <!-- lighter/darker version of accent-->
+
+
+    <color name="button_pressed">#9E9E9E</color>
+    <color name="button_focused">#EEEEEE</color>
+    <color name="button_default">@color/ColorAccent</color>
+
+    <color name="button_text">#424242</color>
+
+    <color name="textColor">#424242</color>
+    <color name="textColorLight">#606060</color>
+    <!--100-->
+</resources>
